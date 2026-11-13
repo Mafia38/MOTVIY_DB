@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>МАТВЕЙ!!! 🎂</title>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;min-height:100%;overflow-x:hidden}
+body{font-family:"Comic Sans MS","Chalkboard SE","Trebuchet MS",sans-serif;color:#1a0033;background:linear-gradient(120deg,#ff2d95,#ffe600,#00e5ff,#7cff00,#ff2d95);background-size:400% 400%;animation:bg 8s linear infinite;touch-action:manipulation}
+@keyframes bg{0%{background-position:0 50%}100%{background-position:400% 50%}}
+button{font:inherit;cursor:pointer;border:4px solid #1a0033;border-radius:18px;padding:12px 16px;font-weight:900;background:#fff;color:#1a0033;box-shadow:0 6px 0 #1a0033;transition:transform .1s}
+button:active{transform:translateY(5px);box-shadow:0 1px 0 #1a0033}
+#gate{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:24px;text-align:center;background:#1a0033 url() ;color:#fff}
+#gate h1{font-size:clamp(28px,9vw,56px);margin:0;animation:wob 1s infinite}
+#gate input{width:min(90vw,380px);font:inherit;font-size:22px;padding:14px;border-radius:16px;border:4px solid #ffe600;text-align:center;background:#fff;color:#1a0033}
+#gate .hint{min-height:1.4em;color:#ffe600;font-size:18px}
+.shake{animation:shk .4s}
+@keyframes shk{20%{transform:translateX(-14px)}40%{transform:translateX(14px)}60%{transform:translateX(-10px)}80%{transform:translateX(10px)}}
+@keyframes wob{0%,100%{transform:rotate(-3deg) scale(1)}50%{transform:rotate(3deg) scale(1.06)}}
+#main{display:none;padding:env(safe-area-inset-top) 10px 80px}
+.marq{background:#1a0033;color:#ffe600;font-weight:900;font-size:20px;white-space:nowrap;overflow:hidden;padding:8px 0;margin:0 -10px;transform:rotate(-1.5deg)}
+.marq span{display:inline-block;padding-left:100%;animation:mq 12s linear infinite}
+@keyframes mq{to{transform:translateX(-100%)}}
+h1.big{font-size:clamp(34px,12vw,96px);line-height:1;text-align:center;margin:24px 0 6px;text-transform:uppercase;background:linear-gradient(90deg,red,orange,yellow,lime,cyan,blue,magenta,red);background-size:300%;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2px #1a0033;animation:bg 3s linear infinite,wob 2s ease-in-out infinite}
+.sub{text-align:center;font-size:20px;font-weight:700;margin:0 0 14px}
+.panel{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:14px 0}
+.card{background:#fff;border:4px solid #1a0033;border-radius:22px;padding:14px;margin:16px auto;max-width:560px;text-align:center;box-shadow:8px 8px 0 #1a0033}
+.card h2{margin:0 0 8px;font-size:22px}
+#phrase{font-size:24px;font-weight:900;min-height:3.2em;display:flex;align-items:center;justify-content:center}
+#age{font-size:56px;font-weight:900;font-variant-numeric:tabular-nums}
+.bar{height:26px;border:3px solid #1a0033;border-radius:14px;overflow:hidden;background:#eee}
+.bar i{display:block;height:100%;width:0;background:repeating-linear-gradient(45deg,#ff2d95 0 10px,#ffe600 10px 20px)}
+#cake{font-size:90px;cursor:pointer;user-select:none;position:relative;display:inline-block}
+#gal{columns:2;column-gap:10px;padding:0 4px}
+@media(min-width:700px){#gal{columns:4}}
+.ph{break-inside:avoid;margin:0 0 12px;border:5px solid #fff;border-radius:12px;box-shadow:0 6px 14px #0006;overflow:hidden;position:relative;cursor:pointer;transition:transform .3s;background:#fff}
+.ph img,.ph .fb{display:block;width:100%;object-fit:cover}
+.ph .fb{display:flex;align-items:center;justify-content:center;font-size:64px}
+.ph b{position:absolute;left:0;right:0;bottom:0;background:#1a0033cc;color:#fff;font-size:13px;padding:4px;text-align:center}
+.spin{animation:spin .8s}
+@keyframes spin{to{transform:rotate(720deg) scale(1.3)}}
+.fly{position:fixed;pointer-events:none;z-index:40;will-change:transform}
+#boom{position:fixed;inset:0;pointer-events:none;z-index:45}
+#run{position:fixed;z-index:30;bottom:16px;right:12px}
+.sticker{position:fixed;z-index:20;font-size:46px;pointer-events:none;animation:float linear infinite}
+@keyframes float{from{transform:translateY(110vh) rotate(0)}to{transform:translateY(-20vh) rotate(360deg)}}
+.balloon{position:fixed;z-index:35;font-size:64px;bottom:-90px;cursor:pointer;user-select:none;animation:up linear forwards}
+@keyframes up{to{transform:translateY(-120vh) translateX(var(--dx))}}
+body.disco{animation:bg .5s linear infinite}
+body.flip #main{transform:rotate(180deg)}
+@media(prefers-reduced-motion:reduce){*{animation-duration:6s!important}}
+</style>
+</head>
+<body>
+
+<div id="gate">
+  <div style="font-size:80px">🕵️‍♂️🎂</div>
+  <h1>обзовись<br>введите имя</h1>
+  <input id="nm" placeholder="Имя…" autocomplete="off" maxlength="30">
+  <button id="go">войти</button>
+  <div class="hint" id="hint"></div>
+</div>
+
+<div id="main">
+  <div class="marq"><span id="mq"></span></div>
+  <h1 class="big">С Днём<br>Рождения,<br>Матвей!</h1>
+  <p class="sub" id="who"></p>
+
+  <div class="card"><h2>Матвею исполняется</h2><div id="age">0</div><div>(лет, примерно, плюс-минус три с половиной полдесятых)</div></div>
+
+  <div class="panel">
+    <button id="bConf">🎉 КОНФЕТТИ</button>
+    <button id="bPhrase">🗣 ПОЗДРАВЛЕНИЕ</button>
+    <button id="bBal">🎈 ШАРИКИ</button>
+    <button id="bDisco">🪩 ДИСКО</button>
+    <button id="bMore">📸 МАТВЕЕВ еще</button>
+    <button id="bSnd">🔊 ЗВУК</button>
+    <button id="bVoice">📣 ГОЛОСОМ</button>
+    <button id="bVoice2">🤡 СТРАННЫМ ГОЛОСОМ</button>
+    <button id="bFlip">🙃 ПЕРЕВЕРНУТЬ</button>
+    <button id="bRain">🐟 ДОЖДЬ</button>
+  </div>
+
+  <div class="card"><h2>Официальное поздравление</h2><div id="phrase">Нажми «ПОЗДРАВЛЕНИЕ»</div></div>
+
+  <div class="card"><h2>Задуй торт</h2><div id="cake">🎂</div><div id="cakeTxt">Тапай по торту</div></div>
+
+  <div class="card"><h2>Загрузка подарка</h2><div class="bar"><i id="pb"></i></div><div id="pt">0%</div></div>
+
+  <h2 style="text-align:center;font-size:28px">📸 ГАЛЕРЕЯ МАТВЕЯ (тапни фото)</h2>
+  <div id="gal"></div>
+</div>
+
+<button id="run" style="display:none">НЕ НАЖИМАТЬ</button>
+<canvas id="boom"></canvas>
+
+<script>
+const PHOTO_COUNT = 12;
+const EXT = "jpg";
+// ======================================================================
+const $ = id => document.getElementById(id);
+const R = (a,b)=>Math.random()*(b-a)+a;
+const pick = a => a[Math.floor(Math.random()*a.length)];
+const EM = ["🐟","🥔","🦆","🍌","🧦","🐸","🍕","🦄","🧀","🚽","🪿","🥒","🐙","🛸","🍄","🦖"];
+const CAPS = ["Матвей в естественной среде","Матвей думает о тапках","Матвей до рождения","Матвей, которого вы не знали","Подозрительно доволен","Фото сделано в 2087","Матвей и его тень","Секретный агент Матвей","Матвей ест воздух","Лучший кадр века","Матвей против гравитации","Просто Матвей","матван", "движ"];
+const GRAD = ["#ff2d95,#ffe600","#00e5ff,#7cff00","#7c4dff,#ff2d95","#ff9100,#ffee58","#00e676,#00b0ff"];
+const PH = [
+ "Матвей, ты старше, чем вчера, и мудрее, чем картошка.",
+ "Желаем тебе здоровья, счастья и одного очень большого.",
+ "Пусть твой интернет летает быстрее голубя с реактивным ранцем.",
+ "С днём рождения! Торт уже нервничает.",
+ "Пусть все пароли вспоминаются с первого раза, а носки находятся парами.",
+ "Тебе столько лет, что можно сдать в музей. Но мы тебя любим.",
+ "Желаем денег как у уточки в мультике и вайба как у Матвея.",
+ "Сегодня официально разрешено всё, кроме скучного лица.",
+ "Пусть жизнь будет как пицца: круглая, горячая и с добавкой.",
+ "легенда",
+ "Загадай желание. Нет, не то. Другое. Ну ладно, это тоже подойдёт.",
+ "Поздравляем! Ты выиграл ещё один год. Приз не вернуть."
+];
+let name="";
+// ----- вход -----
+function enter(){
+  const v=$("nm").value.trim();
+  if(!v){const g=$("gate");g.classList.remove("shake");void g.offsetWidth;g.classList.add("shake");$("hint").textContent="Имя пустое, как холодильник в понедельник 🧊";return}
+  name=v;
+  const isM=/матв|matv|mat[th]|мотя|матюх/i.test(v);
+  $("who").textContent=isM?"Привет, "+v+"! Это всё для тебя 🎁":"Привет, "+v+"! Ты не Матвей, но праздник общий 🥳";
+  $("hint").textContent=isM?"Узнал. Пропускаю 🤝":"Подозрительно… ладно, проходи 🕵️";
+  setTimeout(()=>{$("gate").style.display="none";$("main").style.display="block";$("run").style.display="block";start()},700);
+  sound();
+}
+$("go").onclick=enter;$("nm").onkeydown=e=>{if(e.key==="Enter")enter()};
+// ----- звук -----
+let ac;
+function sound(f){try{ac=ac||new (window.AudioContext||window.webkitAudioContext)();const o=ac.createOscillator(),g=ac.createGain();o.type=pick(["square","sawtooth","triangle"]);o.frequency.value=f||R(200,900);g.gain.setValueAtTime(.15,ac.currentTime);g.gain.exponentialRampToValueAtTime(.001,ac.currentTime+.3);o.connect(g);g.connect(ac.destination);o.start();o.stop(ac.currentTime+.3)}catch(e){}}
+function melody(){[262,262,294,262,349,330,262,262,294,262,392,349].forEach((f,i)=>setTimeout(()=>sound(f),i*260))}
+// ----- конфетти -----
+const cv=$("boom"),cx=cv.getContext("2d");let parts=[],raf;
+function size(){cv.width=innerWidth;cv.height=innerHeight}addEventListener("resize",size);size();
+function boom(x,y,n=90){x=x??innerWidth/2;y=y??innerHeight/2;for(let i=0;i<n;i++){const a=R(0,6.28),s=R(3,13);parts.push({x,y,vx:Math.cos(a)*s,vy:Math.sin(a)*s-5,c:`hsl(${R(0,360)},100%,55%)`,w:R(6,12),l:100,e:Math.random()<.2?pick(EM):null})}if(!raf)loop()}
+function loop(){cx.clearRect(0,0,cv.width,cv.height);parts=parts.filter(p=>p.l>0);parts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=.3;p.vx*=.99;p.l--;cx.globalAlpha=Math.min(1,p.l/30);if(p.e){cx.font="26px serif";cx.fillText(p.e,p.x,p.y)}else{cx.fillStyle=p.c;cx.fillRect(p.x,p.y,p.w,p.w*.6)}});cx.globalAlpha=1;raf=parts.length?requestAnimationFrame(loop):null}
+// ----- след от пальца -----
+let last=0;
+function trail(e){const t=performance.now();if(t-last<70)return;last=t;const p=e.touches?e.touches[0]:e;const s=document.createElement("div");s.className="fly";s.textContent=pick(EM);s.style.cssText+=`left:${p.clientX}px;top:${p.clientY}px;font-size:${R(20,40)}px`;document.body.appendChild(s);s.animate([{transform:"translate(0,0) scale(1)",opacity:1},{transform:`translate(${R(-60,60)}px,${R(40,120)}px) scale(.2) rotate(${R(-360,360)}deg)`,opacity:0}],{duration:900}).onfinish=()=>s.remove()}
+addEventListener("touchmove",trail,{passive:true});addEventListener("mousemove",trail);
+addEventListener("pointerdown",e=>{if(e.target.tagName!=="BUTTON")boom(e.clientX,e.clientY,25)});
+// ----- фото -----
+function mkPhoto(i){
+  const d=document.createElement("div");d.className="ph";d.style.transform=`rotate(${R(-5,5)}deg)`;
+  const h=R(140,300)|0;
+  const fb=()=>{d.innerHTML=`<div class="fb" style="height:${h}px;background:linear-gradient(135deg,${pick(GRAD)});font-size:${R(50,90)|0}px">${pick(EM)}${pick(EM)}</div><b>${pick(CAPS)}</b>`};
+  const im=new Image();im.src=`photos/${i}.${EXT}`;im.loading="lazy";im.onerror=fb;im.onload=()=>{d.innerHTML="";d.appendChild(im);d.insertAdjacentHTML("beforeend",`<b>${pick(CAPS)}</b>`)};
+  d.onclick=()=>{d.classList.remove("spin");void d.offsetWidth;d.classList.add("spin");const r=d.getBoundingClientRect();boom(r.left+r.width/2,r.top+r.height/2,40);sound()};
+  $("gal").appendChild(d);
+}
+function more(n=6){for(let i=0;i<n;i++)mkPhoto((Math.random()*PHOTO_COUNT|0)+1)}
+// ----- запуск -----
+function start(){
+  $("mq").textContent=("МАТВЕЙ МАТВЕЙ МАТВЕЙ 🎂 ЭТО НЕ УЧЕБНАЯ ТРЕВОГА 🎈 ПОЗДРАВЛЯЕМ 🐟 ").repeat(3);
+  for(let i=1;i<=PHOTO_COUNT;i++)mkPhoto(i);
+  for(let i=0;i<10;i++){const s=document.createElement("div");s.className="sticker";s.textContent=pick(EM);s.style.cssText+=`left:${R(0,95)}vw;animation-duration:${R(8,20)}s;animation-delay:${-R(0,20)}s`;document.body.appendChild(s)}
+  setTimeout(()=>boom(),300);
+  let a=0;const t=setInterval(()=>{a+=1;$("age").textContent=a;if(a>=100){clearInterval(t);setTimeout(()=>{$("age").textContent="∞ минус 1";},500)}},25);
+  let p=0;setInterval(()=>{p=p<99?p+Math.random()*3:99;if(p>98.9&&Math.random()<.03)p=12;p=Math.min(99,p);$("pb").style.width=p+"%";$("pt").textContent=p.toFixed(0)+"%"+(p>=99?" (завис, это нормально)":"")},300);
+}
+// ----- кнопки -----
+$("bConf").onclick=()=>{boom(innerWidth/2,innerHeight/2,200);sound()};
+$("bPhrase").onclick=()=>{const t=pick(PH);$("phrase").textContent=t;speak(t,1.2,1.1);boom(innerWidth/2,200,40);sound()};
+$("bMore").onclick=()=>{more(6);boom(innerWidth/2,innerHeight/2,40);sound()};
+$("bSnd").onclick=melody;
+$("bDisco").onclick=()=>{document.body.classList.toggle("disco");sound(500)};
+$("bFlip").onclick=()=>{document.body.classList.toggle("flip");sound(150)};
+$("bRain").onclick=()=>{for(let i=0;i<40;i++)setTimeout(()=>{const s=document.createElement("div");s.className="fly";s.textContent=pick(EM);s.style.cssText+=`left:${R(0,95)}vw;top:-50px;font-size:${R(30,60)}px`;document.body.appendChild(s);s.animate([{transform:"translateY(0) rotate(0)"},{transform:`translateY(${innerHeight+100}px) rotate(${R(-720,720)}deg)`}],{duration:R(1800,3500)}).onfinish=()=>s.remove()},i*80);sound(300)};
+$("bBal").onclick=()=>{for(let i=0;i<8;i++){const b=document.createElement("div");b.className="balloon";b.textContent=pick(["🎈","🎈","🎈","🎁","🪩"]);b.style.cssText+=`left:${R(2,85)}vw;animation-duration:${R(5,10)}s;--dx:${R(-80,80)}px`;b.onclick=e=>{boom(e.clientX,e.clientY,30);sound(R(400,1200));b.remove()};b.onanimationend=()=>b.remove();document.body.appendChild(b)}};
+// торт
+let flame=5;
+$("cake").onclick=()=>{flame--;sound(200+flame*100);const m=["Ещё!","Свеча сопротивляется","Почти","Последняя дрожит","ПУФ!"];$("cakeTxt").textContent=flame>0?m[4-flame]:"УРА! Торт задут, желание принято, ЗДРАВСТВУЙТЕ 🎂";if(flame<=0){boom(innerWidth/2,innerHeight/2,250);melody();flame=5;$("cake").textContent="🎂"}else $("cake").textContent=["🎂","🎂","🎂","🎂"][0]+"🕯️".repeat(flame)};
+
+// ----- голос -----
+let voices=[];
+function loadV(){voices=(window.speechSynthesis?speechSynthesis.getVoices():[])}
+if(window.speechSynthesis){loadV();speechSynthesis.onvoiceschanged=loadV}
+function speak(text,pitch=1,rate=1){
+  if(!window.speechSynthesis){alert("Этот браузер не умеет говорить 😢");return}
+  speechSynthesis.cancel();
+  const u=new SpeechSynthesisUtterance(text);
+  u.lang="ru-RU";u.pitch=pitch;u.rate=rate;
+  const v=voices.find(v=>/^ru/i.test(v.lang));if(v)u.voice=v;
+  speechSynthesis.speak(u);
+}
+function greet(){const n=name||"Матвей";return pick([
+ "Матвей! С днём рождения! Это не шутка. Ну, почти.",
+ "Внимание, внимание! Объявляется праздник. Матвей, это всё для тебя.",
+ n+", слушай внимательно. Желаю тебе счастья, здоровья и очень много.",
+ "Дорогой Матвей! Тебе исполнилось столько лет, что торт не поместится в духовку. Ура!",
+ "Привет, Матвей. Это голос из интернета. Он поздравляет тебя с днём рождения и просит не пугаться.",
+ "Матвей, ты супер! Пусть всё получается, а носки всегда находятся парами. Ура, ура, ура!"
+])}
+$("bVoice").onclick=()=>{const t=greet();$("phrase").textContent=t;boom(innerWidth/2,200,60);speak(t,1,1)};
+$("bVoice2").onclick=()=>{const t=greet();$("phrase").textContent=t;boom(innerWidth/2,200,60);speak(t,pick([0.1,0.3,2,1.8]),pick([0.6,0.8,1.4,1.7]))};
+// убегающая кнопка
+const run=$("run");
+function esc(e){e&&e.preventDefault();run.style.right="auto";run.style.bottom="auto";run.style.left=R(5,innerWidth-170)+"px";run.style.top=R(60,innerHeight-80)+"px";sound(R(100,300))}
+run.addEventListener("touchstart",esc,{passive:false});run.addEventListener("mouseenter",esc);
+let clicks=0;run.onclick=()=>{clicks++;run.textContent=clicks>2?"ЛАДНО, ЖМИ":"НЕ НАЖИМАТЬ";if(clicks>2){boom(innerWidth/2,innerHeight/2,300);melody();document.body.classList.add("disco");more(8);clicks=0}};
+</script>
+</body>
+</html>
