@@ -76,6 +76,7 @@ body.flip #main{transform:rotate(180deg)}
     <button id="bDisco">🪩 ДИСКО</button>
     <button id="bMore">📸 МАТВЕЕВ еще</button>
     <button id="bSnd">🔊 ЗВУК</button>
+    <button id="bMusic">🎵 МУЗЫКА: ВКЛ</button>
     <button id="bVoice">📣 ГОЛОСОМ</button>
     <button id="bVoice2">🤡 СТРАННЫМ ГОЛОСОМ</button>
     <button id="bFlip">🙃 ПЕРЕВЕРНУТЬ</button>
@@ -93,9 +94,11 @@ body.flip #main{transform:rotate(180deg)}
 </div>
 
 <button id="run" style="display:none">НЕ НАЖИМАТЬ</button>
+<audio id="bgm" src="song.mp3" loop preload="auto"></audio>
 <canvas id="boom"></canvas>
 
 <script>
+// ===== ФОТО: положи файлы в папку photos/ с именами 1.jpg … 12.jpg =====
 const PHOTO_COUNT = 12;
 const EXT = "jpg";
 // ======================================================================
@@ -130,6 +133,7 @@ function enter(){
   $("hint").textContent=isM?"Узнал. Пропускаю 🤝":"Подозрительно… ладно, проходи 🕵️";
   setTimeout(()=>{$("gate").style.display="none";$("main").style.display="block";$("run").style.display="block";start()},700);
   sound();
+  playMusic();
 }
 $("go").onclick=enter;$("nm").onkeydown=e=>{if(e.key==="Enter")enter()};
 // ----- звук -----
@@ -178,6 +182,11 @@ $("bBal").onclick=()=>{for(let i=0;i<8;i++){const b=document.createElement("div"
 let flame=5;
 $("cake").onclick=()=>{flame--;sound(200+flame*100);const m=["Ещё!","Свеча сопротивляется","Почти","Последняя дрожит","ПУФ!"];$("cakeTxt").textContent=flame>0?m[4-flame]:"УРА! Торт задут, желание принято, ЗДРАВСТВУЙТЕ 🎂";if(flame<=0){boom(innerWidth/2,innerHeight/2,250);melody();flame=5;$("cake").textContent="🎂"}else $("cake").textContent=["🎂","🎂","🎂","🎂"][0]+"🕯️".repeat(flame)};
 
+
+// ----- музыка -----
+const bgm=$("bgm");bgm.volume=.7;
+function playMusic(){const pr=bgm.play();if(pr)pr.then(()=>$("bMusic").textContent="🎵 МУЗЫКА: ВКЛ").catch(()=>$("bMusic").textContent="🎵 МУЗЫКА: ВЫКЛ")}
+$("bMusic").onclick=()=>{if(bgm.paused){playMusic()}else{bgm.pause();$("bMusic").textContent="🎵 МУЗЫКА: ВЫКЛ"}};
 // ----- голос -----
 let voices=[];
 function loadV(){voices=(window.speechSynthesis?speechSynthesis.getVoices():[])}
@@ -188,6 +197,7 @@ function speak(text,pitch=1,rate=1){
   const u=new SpeechSynthesisUtterance(text);
   u.lang="ru-RU";u.pitch=pitch;u.rate=rate;
   const v=voices.find(v=>/^ru/i.test(v.lang));if(v)u.voice=v;
+  bgm.volume=.15;u.onend=u.onerror=()=>{bgm.volume=.7};
   speechSynthesis.speak(u);
 }
 function greet(){const n=name||"Матвей";return pick([
