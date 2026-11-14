@@ -77,7 +77,6 @@ body.flip #main{transform:rotate(180deg)}
     <button id="bMore">📸 МАТВЕЕВ еще</button>
     <button id="bSnd">🔊 ЗВУК</button>
     <button id="bMusic">🎵 МУЗЫКА: ВКЛ</button>
-    <button id="bShake">📳 ТРЯСКА: ВКЛ</button>
     <button id="bVoice">📣 ГОЛОСОМ</button>
     <button id="bVoice2">🤡 СТРАННЫМ ГОЛОСОМ</button>
     <button id="bFlip">🙃 ПЕРЕВЕРНУТЬ</button>
@@ -205,7 +204,8 @@ function beatLoop(){
   let e=0;for(let i=1;i<6;i++)e+=fdata[i];e/=5;
   avg=avg*.95+e*.05;
   const t=performance.now();
-  if(e>avg*1.2&&e>100&&t-lastBeat>260){lastBeat=t;beat(Math.min(1,e/255))}
+  if(e>avg*1.1&&e>80&&t-lastBeat>200){lastBeat=t;beat(Math.min(1,e/255))}
+  else if(t-lastBeat>330){lastBeat=t;beat(.35)}
 }
 function setupBeat(){
   if(an||setupBeat.done)return;setupBeat.done=true;
@@ -217,9 +217,8 @@ function setupBeat(){
     fdata=new Uint8Array(an.frequencyBinCount);
     if(ac.state==="suspended")ac.resume();
     beatLoop();
-  }catch(err){an=null;setInterval(()=>{if(!bgm.paused&&beatOn)beat(.5)},500)}
+  }catch(err){an=null;setInterval(()=>{if(!bgm.paused)beat(.5)},231)}
 }
-$("bShake").onclick=()=>{beatOn=!beatOn;$("bShake").textContent="📳 ТРЯСКА: "+(beatOn?"ВКЛ":"ВЫКЛ")};
 // ----- голос -----
 let voices=[];
 function loadV(){voices=(window.speechSynthesis?speechSynthesis.getVoices():[])}
