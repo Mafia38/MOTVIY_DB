@@ -189,6 +189,7 @@ function playMusic(){setupBeat();const pr=bgm.play();if(pr)pr.then(()=>$("bMusic
 $("bMusic").onclick=()=>{if(bgm.paused){playMusic()}else{bgm.pause();$("bMusic").textContent="🎵 МУЗЫКА: ВЫКЛ"}};
 
 // ----- тряска под бит -----
+const BEAT_START=1.4; // секунда, с которой в песне начинается звук (тряска до неё выключена)
 let an,fdata,beatOn=true,lastBeat=0,avg=0,bt;
 function beat(pw){
   const m=$("main"),h=document.querySelector("h1.big"),k=6+pw*16;
@@ -200,6 +201,7 @@ function beat(pw){
 function beatLoop(){
   requestAnimationFrame(beatLoop);
   if(bgm.paused||!beatOn||!an)return;
+  if(bgm.currentTime<BEAT_START){lastBeat=performance.now();return}
   an.getByteFrequencyData(fdata);
   let e=0;for(let i=1;i<6;i++)e+=fdata[i];e/=5;
   avg=avg*.95+e*.05;
@@ -217,7 +219,7 @@ function setupBeat(){
     fdata=new Uint8Array(an.frequencyBinCount);
     if(ac.state==="suspended")ac.resume();
     beatLoop();
-  }catch(err){an=null;setInterval(()=>{if(!bgm.paused)beat(.5)},231)}
+  }catch(err){an=null;setInterval(()=>{if(!bgm.paused&&bgm.currentTime>=BEAT_START)beat(.5)},231)}
 }
 // ----- голос -----
 let voices=[];
